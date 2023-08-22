@@ -14,10 +14,10 @@ You were hired by a supermarket to create a new software, this software will hel
 
 ### What needs to be covered:
 
-* Create a class named Product, which will have the following information: name, type, quantity
+* /Create a class named Product, which will have the following information: name, type, quantity
 * The product type will only allow three options: Cleaning, Food, Aesthetics
-* Create an interface with the actions that can be performed with the Product.
-* Create an interface to be able to control the Stock of that product
+* /Create an interface with the actions that can be performed with the Product.
+* /Create an interface to be able to control the Stock of that product
 * Remember that you need a method to show the quantity of best selling products.
 * Create a form so that you can list all the products in the store and that we can select the product to sell by option, if the product stock has ended, display the message "Product Unavailable"
 * After selecting the products, ask the customer to select the quantity of items he wants to buy, remember to validate the quantity.
