@@ -1,4 +1,4 @@
-public class Product {
+public class Product implements ProductActions, StockControl {
 
     private String name;
     private String type;
@@ -20,5 +20,25 @@ public class Product {
         this.name=name;
         this.type=type;
         this.quantity=quantity;
+    }
+
+    @Override
+    public void sell(int quantity) {
+
+    }
+
+    @Override
+    public void addStock(int quantity) {
+
+    }
+
+    @Override
+    public void removeFromStock(int quantity) {
+
+    }
+
+    @Override
+    public int getStockQuantity() {
+        return 0;
     }
 }
