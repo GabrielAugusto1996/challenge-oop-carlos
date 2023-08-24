@@ -52,6 +52,5 @@ public class Main {
         Product bestSellingProduct = null;
         int maxSales = -1;
 
-        for(Product product : products)
     }
 }
