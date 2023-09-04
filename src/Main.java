@@ -1,44 +1,38 @@
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    private static void showBestSellingProducts(ArrayList<Product> products){
-        Product bestSellingProduct = null;
-        int maxSales = -1;
 
-        for(Product product : products){
-            if(product.getSalesCounter() > maxSales){
-                maxSales=product.getSalesCounter();
-                bestSellingProduct=product;
-            }
-        }
-
-        if(bestSellingProduct!=null){
-            System.out.println("Best selling product: "+bestSellingProduct +". Quantity sold: "+bestSellingProduct.getSalesCounter());
-        }
-    }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Product> products = new ArrayList<>();
+        Map<Product, Integer> products = new HashMap<>();
 
         int option = -1;
 
         do{
             System.out.println("Select a product to buy:");
-            for (int i = 1; i-1 < products.size(); i++) {
-                System.out.println(i+1+". "+products.get(i));
+            int i = 1;
+
+            for (Product product : products.keySet()) {
+                System.out.println(i + ". " + product);
+                i++;
+
             }
             System.out.println("0 to exit");
 
             option=scanner.nextInt();
             if(option >=1 && option <= products.size()){
-                Product selectedProduct = products.get(option-1);
+                Product selectedProduct = (Product) products.keySet().toArray()[option - 1];
                 System.out.println("Enter the quantity to buy:");
                 int quantityToBuy = scanner.nextInt();
 
                 if(quantityToBuy <= selectedProduct.getStockQuantity()){
                     selectedProduct.sell(quantityToBuy);
                     System.out.println("Purchase successful");
+                    int currentSales = products.get(selectedProduct);
+                    products.put(selectedProduct, currentSales + quantityToBuy);
+
                 }else {
                     System.out.println("Product out of stock");
                 }
@@ -47,10 +41,27 @@ public class Main {
             }
 
         }while (option!=0);
+        showBestSellingProducts(products);
+
     }
-    private static void showBestSellingProducts(){
+    private static void showBestSellingProducts(Map<Product, Integer> products){
         Product bestSellingProduct = null;
         int maxSales = -1;
 
+        for (Map.Entry<Product, Integer> entry : products.entrySet()) {
+            Product product = entry.getKey();
+            int salesCounter = entry.getValue();
+
+            if (salesCounter > maxSales) {
+                maxSales = salesCounter;
+                bestSellingProduct = product;
+            }
+        }
+
+        if (bestSellingProduct != null) {
+            System.out.println("Best selling product: " + bestSellingProduct.getName() + ". Quantity sold: " + maxSales);
+        }
     }
+
+
 }
